@@ -4,6 +4,7 @@ import { UtilService } from "@/services/utilService";
 import { ICrudExecOption, CrudService } from './crudService';
 import { ScheduleService } from './scheduleService';
 import { TeamService } from './crud/teamService'
+import { DriverService } from './crud/driverService';
 
 // SECTION
 
@@ -12,6 +13,8 @@ const utilService = new UtilService();
 const scheduleService = new ScheduleService();
 // Crud
 const teamService = new TeamService()
+const driverService = new DriverService()
+
 
 // SECTION
 
@@ -21,5 +24,6 @@ export {
   utilService,
   errorService,
   scheduleService,
-  teamService
+  teamService,
+  driverService
 };
