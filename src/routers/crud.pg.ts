@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import { BaseRouter, Request, Response } from "./base";
 import { errorService } from "@/services";
 import { CrudController } from "@/controllers";
-import { queryMiddleware } from "@/middlewares";
+import { queryMiddleware, blockMiddleware } from "@/middlewares";
 
 export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     constructor(controller: T) {
@@ -54,7 +54,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     }
 
     createMiddlewares(): any[] {
-        return [];
+        return [blockMiddleware.run()];
     }
 
     async create(req: Request, res: Response) {
@@ -63,7 +63,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     }
 
     updateMiddlewares(): any[] {
-        return [];
+        return [blockMiddleware.run()];
     }
 
     async update(req: Request, res: Response) {
@@ -75,7 +75,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     }
 
     deleteMiddlewares(): any[] {
-        return [];
+        return [blockMiddleware.run()];
     }
 
     async delete(req: Request, res: Response) {
@@ -87,7 +87,7 @@ export class CrudRouter<T extends CrudController<any>> extends BaseRouter {
     }
 
     deleteAllMiddlewares(): any[] {
-        return [];
+        return [blockMiddleware.run()];
     }
 
     async deleteAll(req: any, res: Response) {

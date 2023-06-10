@@ -1,5 +1,5 @@
 import {
-  Employee,
+  Teams,
 } from '@/models/tables';
 
 console.log('Loading Associate Model.....');

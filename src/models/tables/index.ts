@@ -1,4 +1,5 @@
-// USER & EMPLOYEE
+// table
+export * from './teams'
 
 
 // COURSE
