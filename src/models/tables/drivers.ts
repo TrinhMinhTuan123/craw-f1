@@ -11,7 +11,7 @@ export const Drivers = sequelize.define(
 		},
 		team_id: {
 			type: DataTypes.UUID,
-			allowNull: false,
+			allowNull: true,
 			references: {
 				model: 'tbl_teams',
 				key: 'id',

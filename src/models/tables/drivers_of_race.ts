@@ -38,7 +38,7 @@ export const DriversOfRace = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		time: {
-			type: DataTypes.INTEGER,//minute
+			type: DataTypes.STRING,
 		},
 		pts: {
 			type: DataTypes.INTEGER,//point

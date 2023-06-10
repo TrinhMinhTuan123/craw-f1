@@ -9,7 +9,7 @@ export default class RacesRouter extends CrudRouter<typeof racesController> {
 		super(racesController)
 	}
 	customRouting() {
-		this.router.get('/craw', this.crawdataMiddleware(), this.route(this.create))
+		this.router.get('/craw', this.crawdataMiddleware(), this.route(this.crawdata))
 	}
 	async crawdata(req: Request, res: Response) {
 		const result = await this.controller.crawdata()

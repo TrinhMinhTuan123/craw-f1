@@ -47,7 +47,7 @@ module.exports = {
             type: Sequelize.DataTypes.INTEGER,
           },
           time: {
-            type: Sequelize.DataTypes.INTEGER,//minute
+            type: Sequelize.DataTypes.STRING,
           },
           pts: {
             type: Sequelize.DataTypes.INTEGER,//point

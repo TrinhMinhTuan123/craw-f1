@@ -20,7 +20,7 @@ module.exports = {
           },
           team_id: {
             type: Sequelize.DataTypes.UUID,
-            allowNull: false,
+            allowNull: true,
             references: {
               model: 'tbl_teams',
               key: 'id',
@@ -47,10 +47,6 @@ module.exports = {
             allowNull: false,
           },
           highest_grid_position: {
-            type: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
-          },
-          fastest_laps: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: false,
           },
