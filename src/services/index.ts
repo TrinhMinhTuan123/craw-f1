@@ -5,6 +5,8 @@ import { ICrudExecOption, CrudService } from './crudService';
 import { ScheduleService } from './scheduleService';
 import { TeamService } from './crud/teamService'
 import { DriverService } from './crud/driverService';
+import { DriversOfRaceService } from './crud/driversOfRaceService';
+import { RacesService } from './crud/racesService';
 
 // SECTION
 
@@ -14,6 +16,9 @@ const scheduleService = new ScheduleService();
 // Crud
 const teamService = new TeamService()
 const driverService = new DriverService()
+const driversOfRaceService = new DriversOfRaceService()
+const racesService = new RacesService()
+
 
 
 // SECTION
@@ -25,5 +30,7 @@ export {
   errorService,
   scheduleService,
   teamService,
-  driverService
+  driverService,
+  racesService,
+  driversOfRaceService
 };
