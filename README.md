@@ -2,8 +2,8 @@
 
 Here is the server craw data from the formula1.com site including:
 
-1. all data of teams: working and not work (373 record).
-2. all data of drivers: working and not work (2101 record).
+1. All data of teams: working and not work (373 record).
+2. All data of drivers: working and not work (2101 record).
 3. All races from 1950 (1086 record).
 4. All race results from 1950 (24098 record).
 
@@ -16,7 +16,7 @@ Here is the server craw data from the formula1.com site including:
 3. install postgresql
 4. Prepare .env file connect to database
 5. run `npm install`
-6. Run `npm run start:dev` or parallel (`npm run watch-ts` + `npm run watch`) ==> Run server local
+6. Run `npm run start:dev` or parallel (`npm run watch-ts` + `npm run watch-babel`) ==> Run server local
 7. Run `npm run db:migrate` ==> this command is migrate database **(important)** or you can import database from file &#96;databaseCrawedDataF1&#96;
 
 # How to migrate database
