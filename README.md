@@ -1,5 +1,12 @@
 # nodejs-express-craw-f1
 
+Here is the server craw data from the formula1.com site including:
+
+1. all data of teams: doing and not working
+2. all data of drivers: doing and not working
+3. All races from 1950.
+4. All race results from 1950.
+
 ###### recomend using: Nodejs v14.21.3, TypeScript v5.0.4
 
 # How to run server from local
@@ -10,7 +17,7 @@
 4. Prepare .env file connect to database
 5. run `npm install`
 6. Run `npm run start:dev` or parallel (`npm run watch-ts` + `npm run watch`) ==> Run server local
-7. Run `npm run db:migrate` ==> this command is migrate database **(important)** or you can import database from file &#96;databaseCrawedDataF1.u&#96;
+7. Run `npm run db:migrate` ==> this command is migrate database **(important)** or you can import database from file &#96;databaseCrawedDataF1&#96;
 
 # How to migrate database
 
@@ -42,10 +49,13 @@
 
 ### How To Use APIs
 
-Refer to ERD image: erd-image-craw-f1.png
-Example: Race restful api.
-Get list : [http://localhost:4000/api/v1/races](http://localhost:4000/api/v1/races)
-It has a total of 4 main query params including: fields, page, limit, where, order
+- Refer to ERD image: erd-image-craw-f1.png
+- If you use an empty database, you can sync data by calling the api: [http://localhost:4000/api/v1/races/sync-data]
+- to save your time you can import this sql(in the root directory) and use: databaseCrawedDataF1
+- The server will automatically sync data once a day (schedule)
+- Example: Race restful api.
+  Get list : [http://localhost:4000/api/v1/races](http://localhost:4000/api/v1/races)
+  It has a total of 4 main query params including: fields, page, limit, where, order
 
 1. fields: it's an array, you can get the columns you need or all with ?fields=["$all"] and you can join table
    **example 1:** [http://localhost:4000/api/v1/races?fields=["grand_prix"]](http://localhost:4000/api/v1/races?fields=["grand_prix"])
@@ -93,7 +103,11 @@ The response is:
 
 ### 2. Page : you can specify the page in the api
 
+**Example 1:** [http://localhost:4000/api/v1/races?fields=["$all"]&limit=10&page=1](http://localhost:4000/api/v1/races?fields=["$all"])
+
 ### 3. Limit : you can specify the limit in the api
+
+**Example 1:** [http://localhost:4000/api/v1/races?fields=["$all"]&limit=10&page=1](http://localhost:4000/api/v1/races?fields=["$all"])
 
 ### 4. Where: you can join the table looking for everything with the condition
 
