@@ -16,7 +16,7 @@ export class QueryMiddleware extends BaseMiddleware {
         const fields = this._parseFields(req);
 
         if (fields.attributes != undefined) {
-            fields.attributes = _.union(["id", "updated_at"], fields.attributes);
+            fields.attributes = _.union(["id", "updatedAt", "createdAt"], fields.attributes);
         }
 
         req.queryInfo = _.merge(
@@ -57,7 +57,7 @@ export class QueryMiddleware extends BaseMiddleware {
         } catch (ignore) {
             order = undefined;
         }
-        return order || [["created_at", "desc"]];
+        return order || [["createdAt", "ASC"]];
     }
 
     _parseFields(req: any): any {
@@ -80,7 +80,7 @@ export class QueryMiddleware extends BaseMiddleware {
         let isGetAll = false;
         let isSetParanoid = false;
         let where: any = undefined;
-        _.forEach(attrs, function(f) {
+        _.forEach(attrs, function (f) {
             if (typeof f === "string") {
                 switch (f) {
                     case "$all":

@@ -23,16 +23,16 @@ export class CrudService<T extends ModelDefined<any, any>> {
 
       return result;
     } catch (error) {
-      console.log('ERROR ==> ', error);
+      console.log('ERROR ==> ', error.message);
       if (error instanceof BaseError) throw errorService.database.customError(error.options.message, error.options.code);
       if (config.server.debug) {
         if (error.errors && error.errors[0]) {
-          throw errorService.database.customError('Service unavailable', 404);
+          throw errorService.database.customError(error.message, 404);
         } else {
-          throw errorService.database.customError('Service unavailable', 404);
+          throw errorService.database.customError(error.message, 404);
         }
       } else {
-        throw errorService.database.customError('Service unavailable', 404);
+        throw errorService.database.customError(error.message, 404);
       }
     }
   }

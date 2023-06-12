@@ -17,6 +17,9 @@ export const Drivers = sequelize.define(
 				key: 'id',
 			},
 		},
+		name: {
+			type: DataTypes.STRING,
+		},
 		country: {
 			type: DataTypes.STRING,
 		},
@@ -31,19 +34,12 @@ export const Drivers = sequelize.define(
 		},
 		world_championships: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
 		},
 		highest_race_finish: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
 		},
 		highest_grid_position: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
-		fastest_laps: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
 		},
 		date_of_birth: {
 			type: DataTypes.DATE,
@@ -51,17 +47,6 @@ export const Drivers = sequelize.define(
 		place_of_birth: {
 			type: DataTypes.STRING,
 		},
-		created_at: {
-			type: 'TIMESTAMP',
-			defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-			allowNull: false,
-		},
-		updated_at: {
-			type: 'TIMESTAMP',
-			defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-			allowNull: false,
-		},
-		deleted_at: { type: 'TIMESTAMP' },
 	},
 	{
 		hooks: {
@@ -72,11 +57,11 @@ export const Drivers = sequelize.define(
 		freezeTableName: true,
 		paranoid: true,
 		defaultScope: {
-			attributes: { exclude: ['deleted_at'] },
+			attributes: { exclude: ['deletedAt'] },
 		},
 		scopes: {
 			deleted: {
-				where: { deleted_at: { $ne: null } },
+				where: { deletedAt: { $ne: null } },
 				paranoid: false,
 			},
 		},

@@ -24,6 +24,9 @@ module.exports = {
           date: {
             type: Sequelize.DataTypes.DATE,
           },
+          year: {
+            type: Sequelize.DataTypes.INTEGER,
+          },
           created_at: {
             type: Sequelize.DataTypes.DATE,
             allowNull: false,

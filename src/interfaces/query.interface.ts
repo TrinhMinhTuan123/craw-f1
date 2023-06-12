@@ -1,7 +1,7 @@
 import { AppExceptionType, HttpStatus } from "@/common/enum";
 
 export interface ICrudOption {
-    where: any
+    where?: any
     limit?: number
     offset?: number
     scope?: string[]

@@ -26,6 +26,9 @@ module.exports = {
               key: 'id',
             },
           },
+          name: {
+            type: Sequelize.DataTypes.STRING,
+          },
           country: {
             type: Sequelize.DataTypes.STRING,
           },
@@ -40,15 +43,12 @@ module.exports = {
           },
           world_championships: {
             type: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
           },
           highest_race_finish: {
             type: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
           },
           highest_grid_position: {
             type: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
           },
           date_of_birth: {
             type: Sequelize.DataTypes.DATE,

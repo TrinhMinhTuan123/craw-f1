@@ -15,17 +15,9 @@ export const Races = sequelize.define(
 		date: {
 			type: DataTypes.DATE,
 		},
-		created_at: {
-			type: 'TIMESTAMP',
-			defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-			allowNull: false,
+		year: {
+			type: DataTypes.INTEGER,
 		},
-		updated_at: {
-			type: 'TIMESTAMP',
-			defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-			allowNull: false,
-		},
-		deleted_at: { type: 'TIMESTAMP' },
 	},
 	{
 		hooks: {
@@ -36,11 +28,11 @@ export const Races = sequelize.define(
 		freezeTableName: true,
 		paranoid: true,
 		defaultScope: {
-			attributes: { exclude: ['deleted_at'] },
+			attributes: { exclude: ['deletedAt'] },
 		},
 		scopes: {
 			deleted: {
-				where: { deleted_at: { $ne: null } },
+				where: { deletedAt: { $ne: null } },
 				paranoid: false,
 			},
 		},
