@@ -2,10 +2,10 @@
 
 Here is the server craw data from the formula1.com site including:
 
-1. all data of teams: working and not work
-2. all data of drivers: working and not work
-3. All races from 1950.
-4. All race results from 1950.
+1. all data of teams: working and not work (373 record).
+2. all data of drivers: working and not work (2101 record).
+3. All races from 1950 (1086 record).
+4. All race results from 1950 (24098 record).
 
 ###### recomend using: Nodejs v14.21.3, TypeScript v5.0.4
 
