@@ -37,7 +37,6 @@
     ├── .env                    # enviroments file
     ├── .                       # config file
     ├── .                       # config file
-    ├── tools                   # Tools and utilities
     ├── LICENSE
     └── README.md
 
