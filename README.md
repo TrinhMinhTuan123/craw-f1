@@ -157,3 +157,4 @@ or you can use this link:
     ├── Teams                   # RESTful API of Teams and custom api
     ├── Drivers                 # RESTful API of Drivers and custom api
     ├── Result                  # APIs statistics and simulation of page-like response data: https://www.formula1.com/en/results.html
+If you have problems running the project, I have published it on a VPS and you can test the API with this host: http://141.164.63.209:4000
