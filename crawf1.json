@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "48ae083c-2ed9-4943-a6f0-41d2eecdfb2d",
+		"_postman_id": "b3c2aef8-7267-49cf-b576-d8ca85d1d55a",
 		"name": "vri-craw-f1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "3867591"
+		"_exporter_id": "3867591",
+		"_collection_link": "https://www.postman.com/dark-space-8177-1/workspace/vrillar-test-exam/collection/3867591-b3c2aef8-7267-49cf-b576-d8ca85d1d55a?action=share&creator=3867591&source=collection_link"
 	},
 	"item": [
 		{
@@ -152,7 +153,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/api/v1/races/722e54a0-076e-11ee-805b-abc35407c6e7?fields=[\"$all\"]",
+							"raw": "http://localhost:4000/api/v1/races/cf396f10-088e-11ee-abf4-9fba42ceac9a?fields=[\"$all\"]",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -162,7 +163,7 @@
 								"api",
 								"v1",
 								"races",
-								"722e54a0-076e-11ee-805b-abc35407c6e7"
+								"cf396f10-088e-11ee-abf4-9fba42ceac9a"
 							],
 							"query": [
 								{
@@ -381,7 +382,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/api/v1/drivers-of-race/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"raw": "http://localhost:4000/api/v1/drivers-of-race/cfa158a0-088e-11ee-abf4-9fba42ceac9a?fields=[\"$all\"]",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -391,7 +392,7 @@
 								"api",
 								"v1",
 								"drivers-of-race",
-								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+								"cfa158a0-088e-11ee-abf4-9fba42ceac9a"
 							],
 							"query": [
 								{
@@ -559,7 +560,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/api/v1/teams/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"raw": "http://localhost:4000/api/v1/teams/cf5de700-088e-11ee-abf4-9fba42ceac9a?fields=[\"$all\"]",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -569,7 +570,7 @@
 								"api",
 								"v1",
 								"teams",
-								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+								"cf5de700-088e-11ee-abf4-9fba42ceac9a"
 							],
 							"query": [
 								{
@@ -770,7 +771,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/api/v1/drivers/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"raw": "http://localhost:4000/api/v1/drivers/cf7fedf0-088e-11ee-abf4-9fba42ceac9a?fields=[\"$all\"]",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -780,7 +781,7 @@
 								"api",
 								"v1",
 								"drivers",
-								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+								"cf7fedf0-088e-11ee-abf4-9fba42ceac9a"
 							],
 							"query": [
 								{
@@ -937,52 +938,6 @@
 					"response": []
 				},
 				{
-					"name": "Raking Teams of a year(ALL)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/api/v1/teams/get-result-by-year/2023",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"v1",
-								"teams",
-								"get-result-by-year",
-								"2023"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Raking Driver of a year(ALL)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/api/v1/teams/get-result-by-year/2023",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"v1",
-								"teams",
-								"get-result-by-year",
-								"2023"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Race result of a race",
 					"request": {
 						"method": "GET",
@@ -1018,12 +973,12 @@
 					"response": []
 				},
 				{
-					"name": "Raking a Driver of a year",
+					"name": "Constructor Standings of a year(ALL TEAM)",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]&where={\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}&order=[[\"$race.date$\"\",\"asc\"]]",
+							"raw": "http://localhost:4000/api/v1/teams/get-result-by-year/2023",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1032,29 +987,16 @@
 							"path": [
 								"api",
 								"v1",
-								"drivers-of-race"
-							],
-							"query": [
-								{
-									"key": "fields",
-									"value": "[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]"
-								},
-								{
-									"key": "where",
-									"value": "{\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}",
-									"description": "filter diver \"Max Verstappen\" in 2023"
-								},
-								{
-									"key": "order",
-									"value": "[[\"$race.date$\"\",\"asc\"]]"
-								}
+								"teams",
+								"get-result-by-year",
+								"2023"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Raking a Team of a year",
+					"name": "Constructor Standings Of a Team",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1072,6 +1014,84 @@
 								"cf5de700-088e-11ee-abf4-9fba42ceac9a",
 								"get-result-by-year",
 								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Driver Standings of a Year(ALL Driver)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers/get-result-by-year/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"get-result-by-year",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking a Driver of a year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers/cf7fedf0-088e-11ee-abf4-9fba42ceac9a/get-result-by-year/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"cf7fedf0-088e-11ee-abf4-9fba42ceac9a",
+								"get-result-by-year",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking a Driver of a year (user filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\",{\"race\":[\"$all\"]},{\"driver\":[\"$all\"]}]&where={\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"race\":[\"$all\"]},{\"driver\":[\"$all\"]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}"
+								}
 							]
 						}
 					},
