@@ -1,0 +1,1083 @@
+{
+	"info": {
+		"_postman_id": "48ae083c-2ed9-4943-a6f0-41d2eecdfb2d",
+		"name": "vri-craw-f1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3867591"
+	},
+	"item": [
+		{
+			"name": "Races",
+			"item": [
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list rate by year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races?where={\"year\": 2023}&fields=[\"$all\",{\"drivers_of_race\":[\"$all\",{\"$filter\":{\"pos\":1}},{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "where",
+									"value": "{\"year\": 2023}"
+								},
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"drivers_of_race\":[\"$all\",{\"$filter\":{\"pos\":1}},{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List alias full",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races?fields=[\"$all\",{\"drivers_of_race\":[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"drivers_of_race\":[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ranking list in race",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]&where={\"$race.grand_prix$\":\"Bahrain\",\"$race.year$\":2023}&order=[[\"pos\",\"asc\"]]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]",
+									"description": "get data from driver,team, race"
+								},
+								{
+									"key": "where",
+									"value": "{\"$race.grand_prix$\":\"Bahrain\",\"$race.year$\":2023}",
+									"description": "filter grand_prix and year"
+								},
+								{
+									"key": "order",
+									"value": "[[\"pos\",\"asc\"]]",
+									"description": "order by pos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races/722e54a0-076e-11ee-805b-abc35407c6e7?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races",
+								"722e54a0-076e-11ee-805b-abc35407c6e7"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n                    \"grand_prix\": \"Italy\",\n                    \"date\": \"1950-09-03T04:00:00.000Z\",\n                    \"year\": 1950\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n                    \"grand_prix\": \"Italy\",\n                    \"date\": \"1950-09-03T04:00:00.000Z\",\n                    \"year\": 1950\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races/457ccf20-26cd-11ea-96c0-a3e7d41e2359",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races",
+								"457ccf20-26cd-11ea-96c0-a3e7d41e2359"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races/722e54a0-076e-11ee-805b-abc35407c6e7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races",
+								"722e54a0-076e-11ee-805b-abc35407c6e7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sync data from F1",
+			"item": [
+				{
+					"name": "Craw test by year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races/craw/1993",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races",
+								"craw",
+								"1993"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sync data!!!",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races/sync-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races",
+								"sync-data"
+							]
+						},
+						"description": "it will automatically sync every day but you can call it to sync immediately"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers of race",
+			"item": [
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								},
+								{
+									"key": "order",
+									"value": "[[\"createdAt\",\"ASC\"]]",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race",
+								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"race_id\": \"536f5570-08a7-11ee-abf4-9fba42ceac9a\",\n    \"driver_id\": \"0f230ce0-08a7-11ee-abf4-9fba42ceac9a\",\n    \"no\": \"56\",\n    \"pos\": 9999,\n    \"car\": \"Talbot-Lago\",\n    \"laps\": 29,\n    \"time\": \"DNF\",\n    \"pts\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"race_id\": \"536f5570-08a7-11ee-abf4-9fba42ceac9a\",\n    \"driver_id\": \"0f230ce0-08a7-11ee-abf4-9fba42ceac9a\",\n    \"no\": \"56\",\n    \"pos\": 9999,\n    \"car\": \"Talbot-Lago\",\n    \"laps\": 29,\n    \"time\": \"DNF\",\n    \"pts\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race/457ccf20-26cd-11ea-96c0-a3e7d41e2359",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race",
+								"457ccf20-26cd-11ea-96c0-a3e7d41e2359"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race/ed44d400-6329-11e8-b3c1-296cfe256389",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race",
+								"ed44d400-6329-11e8-b3c1-296cfe256389"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								},
+								{
+									"key": "where",
+									"value": "{\"name\": \"Oracle Red Bull Racing\"}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Oracle Red Bull Racing\",\n    \"base\": \"Milton Keynes, United Kingdom\",\n    \"team_chief\": \"Christian Horner\",\n    \"technical_chief\": \"Pierre Waché\",\n    \"chassis\": \"RB19\",\n    \"power_unit\": \"Honda RBPT\",\n    \"first_team_entry\": 1997,\n    \"world_championships\": 5,\n    \"highest_race_finish\": 99,\n    \"pole_positions\": 87,\n    \"fastest_laps\": 88\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Oracle Red Bull Racing\",\n    \"base\": \"Milton Keynes, United Kingdom\",\n    \"team_chief\": \"Christian Horner\",\n    \"technical_chief\": \"Pierre Waché\",\n    \"chassis\": \"RB19\",\n    \"power_unit\": \"Honda RBPT\",\n    \"first_team_entry\": 1997,\n    \"world_championships\": 5,\n    \"highest_race_finish\": 99,\n    \"pole_positions\": 87,\n    \"fastest_laps\": 88\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/457ccf20-26cd-11ea-96c0-a3e7d41e2359",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"457ccf20-26cd-11ea-96c0-a3e7d41e2359"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/employee/ed44d400-6329-11e8-b3c1-296cfe256389",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"employee",
+								"ed44d400-6329-11e8-b3c1-296cfe256389"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers?fields=[\"$all\",{\"team\":[\"$all\"]}]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"team\":[\"$all\"]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"$team.name$\": {\"$eq\":\"McLaren F1 Team\"}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search driver(working) by keywork",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers?fields=[\"$all\",{\"team\":[\"$all\"]}]&where={\"$and\":[{\"$team.base$\":{\"$ne\":\"GLOBAL\"}},{\"$or\":[{\"name\": {\"$iLike\":\"%25red bull%25\"}},{\"$team.name$\": {\"$iLike\":\"%25red bull%25\"}}]}]}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"team\":[\"$all\"]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"$and\":[{\"$team.base$\":{\"$ne\":\"GLOBAL\"}},{\"$or\":[{\"name\": {\"$iLike\":\"%25red bull%25\"}},{\"$team.name$\": {\"$iLike\":\"%25red bull%25\"}}]}]}",
+									"description": "search driver(working) by keywork"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers/bb59d1e0-627d-11e8-9ca4-35098e2e4d9e?fields=[\"$all\"]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"bb59d1e0-627d-11e8-9ca4-35098e2e4d9e"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\"]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"team_id\": \"d4e0bae0-088e-11ee-abf4-9fba42ceac9a\",\n    \"name\": \"Oscar Piastri\",\n    \"country\": \"Australia\",\n    \"podiums\": null,\n    \"points\": 5,\n    \"grands_prix_entered\": 7,\n    \"world_championships\": null,\n    \"highest_race_finish\": 8,\n    \"highest_grid_position\": 8\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{admin_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers/457ccf20-26cd-11ea-96c0-a3e7d41e2359",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"457ccf20-26cd-11ea-96c0-a3e7d41e2359"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers/ed44d400-6329-11e8-b3c1-296cfe256389",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"ed44d400-6329-11e8-b3c1-296cfe256389"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Result",
+			"item": [
+				{
+					"name": "Race result (ALL)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/races?fields=[\"$all\",{\"drivers_of_race\":[\"$all\",{\"$filter\":{\"pos\":1}},{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]&where={\"year\": 2023}&order=[[\"date\",\"asc\"]]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"races"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"drivers_of_race\":[\"$all\",{\"$filter\":{\"pos\":1}},{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]}]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"year\": 2023}"
+								},
+								{
+									"key": "order",
+									"value": "[[\"date\",\"asc\"]]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking Teams of a year(ALL)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/get-result-by-year/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"get-result-by-year",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking Driver of a year(ALL)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/get-result-by-year/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"get-result-by-year",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Race result of a race",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]&where={\"$race.grand_prix$\":\"Bahrain\",\"$race.year$\":2023}&order=[[\"pos\",\"asc\"]]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"$race.grand_prix$\":\"Bahrain\",\"$race.year$\":2023}"
+								},
+								{
+									"key": "order",
+									"value": "[[\"pos\",\"asc\"]]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking a Driver of a year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/drivers-of-race?fields=[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]&where={\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}&order=[[\"$race.date$\"\",\"asc\"]]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"drivers-of-race"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "[\"$all\",{\"driver\":[\"$all\",{\"team\":[\"$all\"]}]},{\"race\":[\"$all\"]}]"
+								},
+								{
+									"key": "where",
+									"value": "{\"$race.year$\":2023,\"$driver.name$\":\"Max Verstappen\"}",
+									"description": "filter diver \"Max Verstappen\" in 2023"
+								},
+								{
+									"key": "order",
+									"value": "[[\"$race.date$\"\",\"asc\"]]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Raking a Team of a year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/teams/cf5de700-088e-11ee-abf4-9fba42ceac9a/get-result-by-year/2023",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"cf5de700-088e-11ee-abf4-9fba42ceac9a",
+								"get-result-by-year",
+								"2023"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

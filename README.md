@@ -1,16 +1,16 @@
 # nodejs-express-craw-f1
 
-recomend using: Nodejs v14.21.3, TypeScript v5.0.4
+###### recomend using: Nodejs v14.21.3, TypeScript v5.0.4
 
 # How to run server from local
 
-1. Check node version(14.21.3) and TypeScript(https://www.npmjs.com/package/typescript/v/5.0.4)
-2. install https://www.npmjs.com/package/sequelize-cli to migrate Database
+1. Check node version(14.21.3) and TypeScript [https://www.npmjs.com/package/typescript/v/5.0.4](https://www.npmjs.com/package/typescript/v/5.0.4)
+2. install [https://www.npmjs.com/package/sequelize-cli](https://www.npmjs.com/package/sequelize-cli) to migrate Database
 3. install postgresql
 4. Prepare .env file connect to database
 5. run `npm install`
 6. Run `npm run start:dev` or parallel (`npm run watch-ts` + `npm run watch`) ==> Run server local
-7. Run `npm run db:migrate` ==> this command is migrate database(impotant) or you can import database from file `databaseCrawedDataF1.u`
+7. Run `npm run db:migrate` ==> this command is migrate database **(important)** or you can import database from file &#96;databaseCrawedDataF1.u&#96;
 
 # How to migrate database
 
@@ -20,7 +20,6 @@ recomend using: Nodejs v14.21.3, TypeScript v5.0.4
 
 ### Folder Structure Conventions
 
-    .
     ├── build                   # Compiled files (`npm run watch-ts` or npm run start:dev`) for local
     ├── dist                    # Compiled files (npm run build) for prod
     ├── src
@@ -44,83 +43,104 @@ recomend using: Nodejs v14.21.3, TypeScript v5.0.4
 
 ### How To Use APIs
 
-    refer to ERD image: erd-image-craw-f1.png
-    example: Race restful api.
-        Get list : http://localhost:4000/api/v1/races
-        it has a total of 4 main query params including: fields, page, limit, where, order
-            1. fields: it's an array, you can get the columns you need or all with ?fields=["$all"] and you can join table
-                example 1: `http://localhost:4000/api/v1/races?fields=["grand_prix"]`
-                    res is: ....
-                            {
-                                "id": "....",
-                                "updatedAt": "....",
-                                "grand_prix": "Spain"
-                            }
-                            ....
-                example 2: `http://localhost:4000/api/v1/races?fields=["$all"]`
-                    res is: ....
-                            {
-                                "id": "xx",
-                                "grand_prix": "Spain",
-                                "date": "2023-06-04T05:00:00.000Z",
-                                "year": 2023,
-                                "createdAt": "xx",
-                                "updatedAt": "xx",
-                                "deletedAt": null
-                            }
-                            ....
-                example 2:join table `http://localhost:4000/api/v1/races?fields=["year",{"drivers_of_race":["$all",{"driver":["$all"]}]}]`
-                    res is: ....
-                            {
-                                "id": "xx",
-                                "grand_prix": "Spain",
-                                "date": "2023-06-04T05:00:00.000Z",
-                                ...
-                                "drivers_of_race":[
-                                    ...
-                                    data of drivers_of_race
-                                    ...,
-                                    "driver":[
-                                        ...
-                                        data of driver
-                                        ...
-                                    ]
-                                ]
+Refer to ERD image: erd-image-craw-f1.png
+Example: Race restful api.
+Get list : [http://localhost:4000/api/v1/races](http://localhost:4000/api/v1/races)
+It has a total of 4 main query params including: fields, page, limit, where, order
 
-                            }
-                            ....
-            2. page : you can specify the page in the api
-            3. limit : you can specify the limit in the api
-            4. where: you can join the table looking for everything with the condition
-                example 1: query with conditon grand_prix:"Spain"
-                    `http://localhost:4000/api/v1/races?fields=["$all"]&where={"grand_prix": "Spain"}`
-                    res is: ...
-                            {
-                                    "count": 1,
-                                    "rows": [
-                                        {
-                                            "id": "xx",
-                                            "grand_prix": "Spain",
-                                            "date": "xx",
-                                            "year": 2023,
-                                            "createdAt": "xx",
-                                            "updatedAt": "xx",
-                                            "deletedAt": null
-                                        }
-                                    ]
-                            }
+1. fields: it's an array, you can get the columns you need or all with ?fields=["$all"] and you can join table
+   **example 1:** [http://localhost:4000/api/v1/races?fields=["grand_prix"]](http://localhost:4000/api/v1/races?fields=["grand_prix"])
 
-                            ...
-                example 2: query join table
-                    `http://localhost:4000/api/v1/drivers?fields=["$all",{"team":["$all"]}]&where={"$team.name$": "McLaren F1 Team"}`
-                    or
-                    `http://localhost:4000/api/v1/drivers?fields=["$all",{"team":["$all"]}]&where={"$team.name$": {"$eq":"McLaren F1 Team"}}`
-                    detail: get all drivers in the team "McLaren F1 Team"
-                *You can refer to more operations at:: https://sequelize.org/docs/v6/core-concepts/model-querying-basics*
-            5. order: you can sort the position of the main table or the child table
-                example 1: api get raking of a race
-                    `http://localhost:4000/api/v1/drivers-of-race?fields=["$all",{"driver":["$all"]},{"race":["$all"]}]&where={"$race.grand_prix$":"Bahrain"}&order=[["pos","asc"]]`
+```json
+{
+  "id": "....",
+  "updatedAt": "....",
+  "grand_prix": "Spain"
+}
+```
 
+**Example 2:** [http://localhost:4000/api/v1/races?fields=["$all"]](http://localhost:4000/api/v1/races?fields=["$all"])
+The response is:
 
-            ***you can import JSON postman to see all the api I wrote available:
-            crawf1.json
+```json
+{
+  "id": "xx",
+  "grand_prix": "Spain",
+  "date": "2023-06-04T05:00:00.000Z",
+  "year": 2023,
+  "createdAt": "xx",
+  "updatedAt": "xx",
+  "deletedAt": null
+}
+```
+
+**example 3:** Join table [http://localhost:4000/api/v1/races?fields=["year",{"drivers_of_race":["$all",{"driver":["$all"]}]}]](http://localhost:4000/api/v1/races?fields=["year",{"drivers_of_race":["$all",{"driver":["$all"]}]}])
+
+```json
+{
+  "id": "xx",
+  "grand_prix": "Spain",
+  "date": "2023-06-04T05:00:00.000Z",
+  "drivers_of_race": [
+    {
+      "data of drivers_of_race": "data of drivers_of_race",
+      "driver": {
+        "data of driver": "data of driver"
+      }
+    }
+  ]
+}
+```
+
+### 2. Page : you can specify the page in the api
+
+### 3. Limit : you can specify the limit in the api
+
+### 4. Where: you can join the table looking for everything with the condition
+
+**example 1:** query with conditon grand_prix:"Spain"
+[http://localhost:4000/api/v1/races?fields=["$all"]&where={"grand_prix":"Spain"}](http://localhost:4000/api/v1/races?fields=["$all"]&where={"grand_prix":"Spain"})
+The resuli is
+
+```json
+{
+  "count": 1,
+  "rows": [
+    {
+      "id": "xx",
+      "grand_prix": "Spain",
+      "date": "xx",
+      "year": 2023,
+      "createdAt": "xx",
+      "updatedAt": "xx",
+      "deletedAt": null
+    }
+  ]
+}
+```
+
+**example 2:** query join table
+`http://localhost:4000/api/v1/drivers?fields=["$all",{"team":["$all"]}]&where={"$team.name$":"McLaren F1 Team"}`
+or
+`http://localhost:4000/api/v1/drivers?fields=["$all",{"team":["$all"]}]&where={"$team.name$": {"$eq":"McLaren F1 Team"}}`
+**Detail:** get all drivers in the team "McLaren F1 Team"
+_You can refer to more operations at:: https://sequelize.org/docs/v6/core-concepts/model-querying-basics_
+
+### 5. order: you can sort the position of the main table or the child table
+
+**example 1:** api get raking of a race
+[http://localhost:4000/api/v1/drivers-of-race?fields=["$all",{"driver":["$all"]},{"race":["$all"]}]&where={"$race.grand_prix$":"Bahrain"}&order=[["pos","asc"]]](http://localhost:4000/api/v1/drivers-of-race?fields=["$all",{"driver":["$all"]},{"race":["$all"]}]&where={"$race.grand_prix$":"Bahrain"}&order=[["pos","asc"]])
+
+### 6. Postman API docs
+
+you can import JSON postman to see all the api I wrote available:
+`crawf1.json`
+or you can use this link:
+[https://www.postman.com/dark-space-8177-1/workspace/vrillar-test-exam/collection/3867591-b56ba129-e593-413e-85a1-3d7e61214174?action=share&creator=3867591]
+
+    ├── Races                   # RESTful API of Races and custom api
+    ├── Sync data from F1       # APIs for sync data
+    ├── Driver of race          # RESTful API of race and custom api
+    ├── Teams                   # RESTful API of Teams and custom api
+    ├── Drivers                 # RESTful API of Drivers and custom api
+    ├── Result                  # APIs statistics and simulation of page-like response data: https://www.formula1.com/en/results.html

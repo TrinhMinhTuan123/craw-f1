@@ -20,37 +20,60 @@ export class TeamService extends CrudService<typeof Teams> {
 		}
 		return team
 	}
-	async getResultByYear(params: { year: Number, team_id: String }) {
-		let RacesOfTeam = await DriversOfRace.findAll({//get races of a team
+	async getResultATeamByYear(params: { year: Number, team_id: String }) {
+		const result = await DriversOfRace.findAll({
 			where: {
+				"$race.year$": params.year,
 				"$driver.team_id$": params.team_id
 			},
 			include: [
 				{
-					association: "driver",
-					attributes: ["team_id"]
-
+					association: "race",
+					attributes: ["grand_prix", "date"]
 				},
+				{
+					association: "driver",
+					attributes: []
+				}
 			],
-			attributes: ["id"]
+			attributes: [[sequelize.fn('sum', sequelize.col('pts')), 'pts']],
+			group: ["race_id", "race.grand_prix", "race.date", "driver.team_id"],
+			// order: [["pts", "desc"]],
+			raw: true
 		})
-		const ListIdRacesOfTeam: Array<String> = RacesOfTeam.map((item: any) => item.id)
-		const result = await DriversOfRace.findAll({
+		return result
+	}
+	async getResultALLTeamByYear(params: { year: Number }) {
+		let driversOfRaceAYear: any = await DriversOfRace.findAll({//get races of a team
 			where: {
-				id: { $in: ListIdRacesOfTeam },//re-filter with races of this team
 				"$race.year$": params.year
-
 			},
 			include: [
 				{
+					association: "driver",
+					attributes: [],
+					include: [{
+						association: "team",
+						attributes: ["name"],
+
+					}]
+
+				},
+				{
 					association: "race",
-					attributes: { exclude: ["id", "createdAt", "updatedAt", "deletedAt"], include: ["grand_prix", "date"] }
+					attributes: ["year"],
 				},
 			],
-			attributes: ["race_id", [sequelize.fn('sum', sequelize.col('pts')), 'pts']],
-			group: ["race_id", "race.grand_prix", "race.date", "race.id"]
+			attributes: [[sequelize.fn('sum', sequelize.col('pts')), 'pts']],
+			group: ["driver->team.id", "driver.team_id", "race.year"],
+			order: [["pts", "desc"]],
+			raw: true
 		})
-
-		return result
+		for (let index = 0; index < driversOfRaceAYear.length; index++) {
+			const item = driversOfRaceAYear[index]
+			const apiGetResultATeamByYear: string = `/api/v1/teams/${item["driver.team.id"]}/get-result-by-year/${params.year}`
+			item.detail = apiGetResultATeamByYear
+		}
+		return driversOfRaceAYear
 	}
 }

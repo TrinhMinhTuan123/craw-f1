@@ -6,8 +6,12 @@ export class TeamController extends CrudController<typeof teamService> {
 	constructor() {
 		super(teamService)
 	}
-	async getResultByYear(params: { year: Number, team_id: String }) {
-		const result = await this.service.getResultByYear(params)
+	async getResultATeamByYear(params: { year: Number, team_id: String }) {
+		const result = await this.service.getResultATeamByYear(params)
+		return result
+	}
+	async getResultAllTeamByYear(params: { year: Number }) {
+		const result = await this.service.getResultALLTeamByYear(params)
 		return result
 	}
 }
