@@ -51,7 +51,8 @@ Here is the server craw data from the formula1.com site including:
 
 - Refer to ERD image: erd-image-craw-f1.png
 - If you use an empty database, you can sync data by calling the api: [http://localhost:4000/api/v1/races/sync-data]
-- to save your time you can import this sql(in the root directory) and use: databaseCrawedDataF1
+- To save your time you can import this sql(in the root directory) and use: databaseCrawedDataF1
+- You can refer to image "craw-data-architecture.png" to see how i craw the data from F1
 - The server will automatically sync data once a day (schedule)
 - Example: Race restful api.
   Get list : [http://localhost:4000/api/v1/races](http://localhost:4000/api/v1/races)
@@ -157,4 +158,5 @@ or you can use this link:
     ├── Teams                   # RESTful API of Teams and custom api
     ├── Drivers                 # RESTful API of Drivers and custom api
     ├── Result                  # APIs statistics and simulation of page-like response data: https://www.formula1.com/en/results.html
+
 If you have problems running the project, I have published it on a VPS and you can test the API with this host: http://141.164.63.209:4000
